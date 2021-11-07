@@ -5,8 +5,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import useAuth from '../../../Hooks/useAuth';
 
 const Navigation = () => {
+
+    const { user, logOut } = useAuth();
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -21,12 +25,22 @@ const Navigation = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                       Doctors Portal
+                        Doctors Portal
                     </Typography>
-                    <Link to="/appointment">
-                    Appointment
+                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/appointment">
+                        Appointment
                     </Link>
-                    <Button color="inherit">Login</Button>
+                    {
+                        user.email ?
+
+                            <Button  onClick={logOut} color="inherit">Logout</Button>
+
+                            :
+                            <Link style={{ textDecoration: 'none', color: 'white' }} to="/login">
+                                <Button color="inherit">Login</Button>
+                            </Link>
+                    }
+
                 </Toolbar>
             </AppBar>
         </Box>
