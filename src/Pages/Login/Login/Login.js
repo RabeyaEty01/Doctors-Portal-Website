@@ -60,7 +60,7 @@ const Login = () => {
                             isLoading && <CircularProgress />
                         }
                         {
-                            user.email && <Alert severity="success">Login Successfully! </Alert>
+                            user?.email && <Alert severity="success">Login Successfully! </Alert>
                         }
                         {
                             authError && <Alert severity="error">{authError} </Alert>
